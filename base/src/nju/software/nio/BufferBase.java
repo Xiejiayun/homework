@@ -3,6 +3,7 @@ package nju.software.nio;
 import nju.software.util.PrintUtil;
 
 import java.nio.ByteBuffer;
+import java.nio.CharBuffer;
 
 /**
  * Using the buffer in nio package
@@ -14,7 +15,11 @@ public class BufferBase {
      * using CharBuffer
      */
     public void charbuffer() {
-
+        CharBuffer charBuffer = CharBuffer.allocate(10);
+        charBuffer.append('o').append('x').append('j').append('y').position(1).limit(9);
+        CharBuffer wrapBuffer = CharBuffer.wrap(new char[]{'n', 'e', 't', 'e', 'a', 's', 'e'});
+        PrintUtil.print(charBuffer);
+        PrintUtil.print(wrapBuffer);
     }
 
     /**
@@ -70,6 +75,7 @@ public class BufferBase {
 
     public static void main(String[] args) {
         BufferBase base = new BufferBase();
+        base.charbuffer();
         base.bytebuffer();
     }
 
