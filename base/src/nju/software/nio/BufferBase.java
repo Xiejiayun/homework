@@ -14,53 +14,70 @@ public class BufferBase {
     /**
      * using CharBuffer
      */
-    public void charbuffer() {
+    public void charBuffer() {
+
         CharBuffer charBuffer = CharBuffer.allocate(10);
         charBuffer.append('o').append('x').append('j').append('y').position(1).limit(9);
-        CharBuffer wrapBuffer = CharBuffer.wrap(new char[]{'n', 'e', 't', 'e', 'a', 's', 'e'});
         PrintUtil.print(charBuffer);
+
+        charBuffer.put("1234567", 2, 5);
+        charBuffer.flip();
+        PrintUtil.print(charBuffer);
+
+        charBuffer.position(9);
+        charBuffer.flip();
+        PrintUtil.print(charBuffer);
+
+        CharBuffer wrapBuffer = CharBuffer.wrap(new char[]{'n', 'e', 't', 'e', 'a', 's', 'e'});
         PrintUtil.print(wrapBuffer);
+
+        char[] chars = new char[]{'A', 'B', 'C', 'D', 'E', 'F'};
+        wrapBuffer = CharBuffer.wrap(chars);
+        PrintUtil.print(wrapBuffer);
+
+
+
     }
 
     /**
      * using ShortBuffer
      */
-    public void shortbuffer() {
+    public void shortBuffer() {
 
     }
 
     /**
      * using IntBuffer
      */
-    public void intbuffer() {
+    public void intBuffer() {
 
     }
 
     /**
      * using LongBuffer
      */
-    public void longbuffer() {
+    public void longBuffer() {
 
     }
 
     /**
      * using FloatBuffer
      */
-    public void floatbuffer() {
+    public void floatBuffer() {
 
     }
 
     /**
      * using DoubleBuffer
      */
-    public void doublebuffer() {
+    public void doubleBuffer() {
 
     }
 
     /**
      * using ByteBuffer
      */
-    public void bytebuffer() {
+    public void byteBuffer() {
         ByteBuffer byteBuffer = ByteBuffer.allocate(10);
         byteBuffer.put((byte) 'H').put((byte) 'e').put((byte) 'l').put((byte) 'l').put((byte) 'o');
         byteBuffer.put(0, (byte) 'h').put(new byte[]{',', 'x', 'j', 'y'});
@@ -75,8 +92,8 @@ public class BufferBase {
 
     public static void main(String[] args) {
         BufferBase base = new BufferBase();
-        base.charbuffer();
-        base.bytebuffer();
+        base.charBuffer();
+        base.byteBuffer();
     }
 
 }
