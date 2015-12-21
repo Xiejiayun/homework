@@ -22,6 +22,7 @@ public class SimpleClient {
     //send out some message
     private void sendMessage(String message) {
         try {
+            socket.setSoTimeout(5000);
             BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
             writer.write(message);
             writer.flush();
