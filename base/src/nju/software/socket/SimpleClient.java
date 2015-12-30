@@ -6,6 +6,7 @@ import java.io.OutputStreamWriter;
 import java.net.Socket;
 
 /**
+ * Simple Client using Socket to communicate with Server
  * Created by Xie on 2015/12/21.
  */
 public class SimpleClient {

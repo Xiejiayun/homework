@@ -7,6 +7,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 /**
+ * Simple Server using Socket to communicate with Client
  * Created by Xie on 2015/12/21.
  */
 public class SimpleServer {
