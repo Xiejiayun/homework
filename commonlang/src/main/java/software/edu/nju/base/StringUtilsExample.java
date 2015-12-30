@@ -6,17 +6,16 @@ import org.apache.commons.lang3.StringUtils;
  * Using the StringUtils in apache commons lang library
  * Created by Xie on 2015/12/30.
  */
-public class StringUtilsExample {
+public class StringUtilsExample extends BaseExample{
 
     public static void main(String[] args) {
         isEmpty("");
         isBlank("hi");
         trim(" hi, everyone!");
         equals("hello", new String("hello"));
-    }
-
-    private static void println(CharSequence charSequence) {
-        System.out.println(charSequence);
+        split(" hello xjy");
+        String []strs = new String[]{"hi1","hi2","hi3","hi4","hi5","hi6"};
+        join(strs);
     }
 
     /**
@@ -66,5 +65,36 @@ public class StringUtilsExample {
      */
     private static void equals(CharSequence sequence1, CharSequence sequence2) {
         println("The two char sequences are equals " + StringUtils.equals(sequence1, sequence2));
+    }
+
+    /**
+     * StringUtils.split(null)       = null
+     * StringUtils.split("")         = []
+     * StringUtils.split("abc def")  = ["abc", "def"]
+     * StringUtils.split("abc  def") = ["abc", "def"]
+     * StringUtils.split(" abc ")    = ["abc"]
+     * @param string
+     */
+    private static void split(String string) {
+        String []strs = StringUtils.split(string);
+        for (String s : strs) {
+            print(s+"/");
+        }
+        println("");
+    }
+
+    /**
+     * StringUtils.join(null, *)                = null
+     * StringUtils.join([], *)                  = ""
+     * StringUtils.join([null], *)              = ""
+     * StringUtils.join(["a", "b", "c"], "--")  = "a--b--c"
+     * StringUtils.join(["a", "b", "c"], null)  = "abc"
+     * StringUtils.join(["a", "b", "c"], "")    = "abc"
+     * StringUtils.join([null, "", "a"], ',')   = ",,a"
+     * @param strs
+     */
+    private static void join(String[] strs) {
+        String s = StringUtils.join(strs, ",");
+        println(s);
     }
 }
