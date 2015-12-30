@@ -14,7 +14,10 @@ public class Log4jBase {
     public static void main(String[] args) {
 
         System.out.println("start");
-        logger.info("info");
+        if (logger.isInfoEnabled()) {
+            logger.info("info");
+        }
+
         logger.warn("warn");
         logger.error("error");
     }
