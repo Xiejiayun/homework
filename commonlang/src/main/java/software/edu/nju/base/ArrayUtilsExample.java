@@ -24,6 +24,7 @@ public class ArrayUtilsExample extends BaseExample{
 
         Map map = ArrayUtils.toMap(arr3);
         println(map.get("key1"));
+
     }
 
 }
