@@ -9,7 +9,6 @@
         </Console>
     </Appenders>
     <Loggers>
-        <Logger name="org.apache.log4j.xml" level="info"/>
         <Logger name="org.apache.log4j.xml" level="info">
             <AppenderRef ref="out"/>
         </Logger>

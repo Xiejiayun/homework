@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration xmlns:xi="http://www.w3.org/2001/XInclude"
-               status="warn" name="XIncludeDemo">
+               status="info" name="XIncludeDemo">
     <properties>
-        <property name="filename">xinclude-demo.log</property>
+        <property name="filename">test1-$${date:MM-dd-yyyy-HH-mm-ss}.log</property>
     </properties>
-    <ThresholdFilter level="debug"/>
+    <ThresholdFilter level="info"/>
     <xi:include href="log4j-xinclude-appenders.xml" />
     <xi:include href="log4j-xinclude-loggers.xml" />
 </Configuration>
