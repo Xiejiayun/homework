@@ -3,6 +3,7 @@ package nju.software.socket;
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
+import java.net.ConnectException;
 import java.net.Socket;
 
 /**
@@ -23,6 +24,9 @@ public class SimpleClient {
     //send out some message
     private void sendMessage(String message) {
         try {
+            if (socket == null) {
+                return;
+            }
             socket.setSoTimeout(5000);
             BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
             writer.write(message);
@@ -30,6 +34,8 @@ public class SimpleClient {
             writer.close();
             //whenever message is sent out, close the socket
             socket.close();
+        } catch (ConnectException e) {
+            System.out.println("Unable to connect to the server");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -39,6 +45,8 @@ public class SimpleClient {
     private void connect() {
         try {
             socket = new Socket(host, port);
+        } catch (ConnectException e) {
+            System.out.println("Unable to connect to the server");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -48,6 +56,8 @@ public class SimpleClient {
     private void connect(String host, int port) {
         try {
             socket = new Socket(host, port);
+        } catch (ConnectException e) {
+            System.out.println("Unable to connect to the server");
         } catch (IOException e) {
             e.printStackTrace();
         }
