@@ -1,7 +1,7 @@
 package nju.software.concurrent;
 
 /**
- * A simple example about dead lock
+ * A simple dead lock example using two synchronized  objects
  * Created by Xie on 2015/12/31.
  */
 public class DeadLockExample {

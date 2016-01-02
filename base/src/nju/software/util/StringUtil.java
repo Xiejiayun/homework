@@ -8,6 +8,7 @@ public class StringUtil {
 
     /**
      * distinguish whether the string is null or ""(after trim function)
+     *
      * @param str string object
      * @return true or false
      */
@@ -19,9 +20,10 @@ public class StringUtil {
 
     /**
      * distinguish whether the two strings equal or not
+     *
      * @param str1 first string object
      * @param str2 second string object
-     * @return  true or false
+     * @return true or false
      */
     public static boolean equals(String str1, String str2) {
         if (str1 == null || str2 == null)

@@ -13,14 +13,18 @@ import java.nio.channels.WritableByteChannel;
  */
 public class NioSocketClient {
 
-    private static final String  DEFAULT_SERVER = "localhost";
+    private static final String DEFAULT_SERVER = "localhost";
     private static final int DEFAULT_PORT = 6666;
+
+    public static void main(String[] args) {
+        new NioSocketClient().sendMessage(null, -1);
+    }
 
     public void sendMessage(String server, int port) {
         if (server == null)
             server = DEFAULT_SERVER;
         if (port == -1)
-            port =DEFAULT_PORT;
+            port = DEFAULT_PORT;
         try {
             SocketAddress socketAddress = new InetSocketAddress(server, port);
             SocketChannel socketChannel = SocketChannel.open(socketAddress);
@@ -37,9 +41,5 @@ public class NioSocketClient {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-    public static void main(String[] args) {
-        new NioSocketClient().sendMessage(null, -1);
     }
 }

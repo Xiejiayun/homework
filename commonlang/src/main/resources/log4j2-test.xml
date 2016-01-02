@@ -5,6 +5,6 @@
         <property name="filename">test1-$${date:MM-dd-yyyy-HH-mm-ss}.log</property>
     </properties>
     <ThresholdFilter level="info"/>
-    <xi:include href="log4j-xinclude-appenders.xml" />
-    <xi:include href="log4j-xinclude-loggers.xml" />
+    <xi:include href="log4j-xinclude-appenders.xml"/>
+    <xi:include href="log4j-xinclude-loggers.xml"/>
 </Configuration>

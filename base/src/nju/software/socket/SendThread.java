@@ -8,7 +8,7 @@ import java.io.PrintWriter;
  * Send thread to send messages
  * Created by Xie on 2016/1/2.
  */
-public class SendThread implements Runnable{
+public class SendThread implements Runnable {
     String name;
     PrintWriter out;
     BufferedReader stdIn;

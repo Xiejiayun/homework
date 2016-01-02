@@ -6,7 +6,7 @@ import org.apache.commons.lang3.StringUtils;
  * Using the StringUtils in apache commons lang library
  * Created by Xie on 2015/12/30.
  */
-public class StringUtilsExample extends BaseExample{
+public class StringUtilsExample extends BaseExample {
 
     public static void main(String[] args) {
         isEmpty("");
@@ -14,7 +14,7 @@ public class StringUtilsExample extends BaseExample{
         trim(" hi, everyone!");
         equals("hello", new String("hello"));
         split(" hello xjy");
-        String []strs = new String[]{"hi1","hi2","hi3","hi4","hi5","hi6"};
+        String[] strs = new String[]{"hi1", "hi2", "hi3", "hi4", "hi5", "hi6"};
         join(strs);
     }
 
@@ -24,6 +24,7 @@ public class StringUtilsExample extends BaseExample{
      * StringUtils.isEmpty(" ")       = false
      * StringUtils.isEmpty("bob")     = false
      * StringUtils.isEmpty("  bob  ") = false
+     *
      * @param charSequence
      */
     private static void isEmpty(CharSequence charSequence) {
@@ -36,6 +37,7 @@ public class StringUtilsExample extends BaseExample{
      * StringUtils.isBlank(" ")       = true
      * StringUtils.isBlank("bob")     = false
      * StringUtils.isBlank("  bob  ") = false
+     *
      * @param charSequence
      */
     private static void isBlank(CharSequence charSequence) {
@@ -48,6 +50,7 @@ public class StringUtilsExample extends BaseExample{
      * StringUtils.trim("     ")       = ""
      * StringUtils.trim("abc")         = "abc"
      * StringUtils.trim("    abc    ") = "abc"
+     *
      * @param string
      */
     private static void trim(String string) {
@@ -60,6 +63,7 @@ public class StringUtilsExample extends BaseExample{
      * StringUtils.equals("abc", null)  = false
      * StringUtils.equals("abc", "abc") = true
      * StringUtils.equals("abc", "ABC") = false
+     *
      * @param sequence1
      * @param sequence2
      */
@@ -73,12 +77,13 @@ public class StringUtilsExample extends BaseExample{
      * StringUtils.split("abc def")  = ["abc", "def"]
      * StringUtils.split("abc  def") = ["abc", "def"]
      * StringUtils.split(" abc ")    = ["abc"]
+     *
      * @param string
      */
     private static void split(String string) {
-        String []strs = StringUtils.split(string);
+        String[] strs = StringUtils.split(string);
         for (String s : strs) {
-            print(s+"/");
+            print(s + "/");
         }
         println("");
     }
@@ -91,6 +96,7 @@ public class StringUtilsExample extends BaseExample{
      * StringUtils.join(["a", "b", "c"], null)  = "abc"
      * StringUtils.join(["a", "b", "c"], "")    = "abc"
      * StringUtils.join([null, "", "a"], ',')   = ",,a"
+     *
      * @param strs
      */
     private static void join(String[] strs) {

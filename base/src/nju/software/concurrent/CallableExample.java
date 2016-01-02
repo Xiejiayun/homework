@@ -6,13 +6,9 @@ import java.util.concurrent.Callable;
  * A simple counter example using Callable with return value
  * Created by Xie on 2015/12/31.
  */
-public class CallableExample implements Callable<Integer>{
+public class CallableExample implements Callable<Integer> {
 
     private static int count = 10;
-    @Override
-    public Integer call() throws Exception {
-        return count--;
-    }
 
     public static void main(String[] args) {
         CallableExample callableExample = new CallableExample();
@@ -24,6 +20,11 @@ public class CallableExample implements Callable<Integer>{
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public Integer call() throws Exception {
+        return count--;
     }
 
 

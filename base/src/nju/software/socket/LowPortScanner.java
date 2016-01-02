@@ -10,6 +10,11 @@ import java.net.Socket;
 public class LowPortScanner {
 
     private static final String host = "localhost";
+
+    public static void main(String[] args) {
+        new LowPortScanner().scanLowPort();
+    }
+
     public void scanLowPort() {
         for (int port = 1; port < 1024; port++) {
             try (Socket socket = new Socket(host, port)) {
@@ -20,10 +25,6 @@ public class LowPortScanner {
 //                e.printStackTrace();
             }
         }
-    }
-
-    public static void main(String[] args) {
-        new LowPortScanner().scanLowPort();
     }
 
 }

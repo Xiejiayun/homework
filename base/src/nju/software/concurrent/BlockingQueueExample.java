@@ -31,7 +31,7 @@ class Producer implements Runnable {
     @Override
     public void run() {
         while (true) {
-            while(blockingQueue != null && blockingQueue.remainingCapacity() > 0) {
+            while (blockingQueue != null && blockingQueue.remainingCapacity() > 0) {
                 try {
                     System.out.println("input into the blocking queue " + count);
                     blockingQueue.add(count++);
@@ -58,7 +58,7 @@ class Consumer implements Runnable {
         while (true) {
             while (blockingQueue != null && !blockingQueue.isEmpty()) {
                 try {
-                    System.out.println("take from the blocking queue "+blockingQueue.take());
+                    System.out.println("take from the blocking queue " + blockingQueue.take());
                     Thread.sleep(1000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();

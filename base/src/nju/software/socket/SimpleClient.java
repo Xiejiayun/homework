@@ -15,6 +15,7 @@ public class SimpleClient {
     private static final String host = "127.0.0.1";
     private static final int port = 6666;
     private static Socket socket;
+
     public static void main(String[] args) {
         SimpleClient simpleClient = new SimpleClient();
         simpleClient.connect();

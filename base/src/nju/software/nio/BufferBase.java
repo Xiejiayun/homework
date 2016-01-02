@@ -10,6 +10,17 @@ import java.nio.*;
  */
 public class BufferBase {
 
+    public static void main(String[] args) {
+        BufferBase base = new BufferBase();
+        base.charBuffer();
+        base.shortBuffer();
+        base.intBuffer();
+        base.longBuffer();
+        base.floatBuffer();
+        base.doubleBuffer();
+        base.byteBuffer();
+    }
+
     /**
      * using CharBuffer
      */
@@ -138,18 +149,6 @@ public class BufferBase {
         }
         String result = sb.toString();
         PrintUtil.print(result);
-    }
-
-    public static void main(String[] args) {
-        BufferBase base = new BufferBase();
-        base.charBuffer();
-        base.shortBuffer();
-        base.intBuffer();
-        base.longBuffer();
-        base.floatBuffer();
-        base.doubleBuffer();
-        base.byteBuffer();
-
     }
 
 }

@@ -74,7 +74,7 @@ public class ChannelBase {
 //        byteBuffer.flip();
         StringBuilder stringBuilder = new StringBuilder("");
         while (byteBuffer.hasRemaining()) {
-            char ch = (char)byteBuffer.get();
+            char ch = (char) byteBuffer.get();
             stringBuilder.append(ch);
         }
         System.out.println(stringBuilder.toString());
