@@ -18,16 +18,16 @@ public class BaseExample {
         System.out.println(string);
     }
 
+    protected static void print(String string) {
+        System.out.print(string);
+    }
+
     protected static void print(Object object) {
         System.out.print(object.toString());
     }
 
     protected static void println(Object object) {
         System.out.println(object.toString());
-    }
-
-    protected static void print(String string) {
-        System.out.print(string);
     }
 
     protected static void print(Object[] arr) {
