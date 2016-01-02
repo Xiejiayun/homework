@@ -149,6 +149,7 @@ public class BufferBase {
         }
         String result = sb.toString();
         PrintUtil.print(result);
+
     }
 
 }

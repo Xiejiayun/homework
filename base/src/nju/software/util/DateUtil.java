@@ -5,4 +5,8 @@ package nju.software.util;
  * Created by Xie on 2015/12/18.
  */
 public class DateUtil {
+
+    public static void main(String[] args) {
+
+    }
 }

@@ -1,4 +1,4 @@
-package software.edu.nju;
+package nju.software;
 
 import org.apache.commons.lang3.StringUtils;
 

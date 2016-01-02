@@ -1,4 +1,4 @@
-package software.edu.nju.base;
+package nju.software.base;
 
 import org.apache.commons.lang3.RandomUtils;
 

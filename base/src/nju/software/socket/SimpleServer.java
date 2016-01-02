@@ -22,16 +22,14 @@ public class SimpleServer {
     //Listen on the specific port to receive message from client
     public void listenAndAccept() {
         String message = "";
-        try {
-            ServerSocket serverSocket = new ServerSocket(port);
-            Socket socket = serverSocket.accept();
-            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+        try (
+                ServerSocket serverSocket = new ServerSocket(port);
+                Socket socket = serverSocket.accept();
+                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(socket.getInputStream()))
+        ) {
             while ((message = bufferedReader.readLine()) != null) {
                 System.out.println("Received from Client: " + message);
             }
-            bufferedReader.close();
-            socket.close();
-            serverSocket.close();
         } catch (IOException e) {
             e.printStackTrace();
         }

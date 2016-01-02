@@ -1,4 +1,4 @@
-package software.edu.nju.base;
+package nju.software.base;
 
 /**
  * Provide some common functions like print
