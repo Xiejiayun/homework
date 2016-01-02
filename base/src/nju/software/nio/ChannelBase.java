@@ -15,23 +15,15 @@ public class ChannelBase {
     public static void main(String[] args) {
         ChannelBase channelBase = new ChannelBase();
         channelBase.writeFileChannel();
-        channelBase.readFileChannel();
+//        channelBase.readFileChannel();
+        channelBase.transferBetweenChannels();
     }
 
     public void readFileChannel() {
         try (RandomAccessFile randomAccessFile = new RandomAccessFile("demo.txt", "rw");
              FileChannel fileChannel = randomAccessFile.getChannel();
         ) {
-            ByteBuffer byteBuffer = ByteBuffer.allocate(66);
-            byteBuffer.clear();
-            fileChannel.read(byteBuffer);
-            byteBuffer.flip();
-            StringBuilder stringBuilder = new StringBuilder("");
-            while (byteBuffer.hasRemaining()) {
-                char ch = (char)byteBuffer.get();
-                stringBuilder.append(ch);
-            }
-            System.out.println(stringBuilder.toString());
+            printChannelData(fileChannel);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -40,7 +32,7 @@ public class ChannelBase {
     }
 
     public void writeFileChannel() {
-        try (RandomAccessFile randomAccessFile = new RandomAccessFile("demo.txt", "rw");
+        try (RandomAccessFile randomAccessFile = new RandomAccessFile("from.txt", "rw");
              FileChannel fileChannel = randomAccessFile.getChannel();
         ) {
             String str = "hello world!";
@@ -58,8 +50,34 @@ public class ChannelBase {
         }
     }
 
-    public void read() {
+    public void transferBetweenChannels() {
+        try (RandomAccessFile fromFile = new RandomAccessFile("from.txt", "rw");
+             FileChannel fromChannel = fromFile.getChannel();
+             RandomAccessFile toFile = new RandomAccessFile("to.txt", "rw");
+             FileChannel toChannel = toFile.getChannel();
+        ) {
+            long position = 0;
+            long count = fromChannel.size();
+            fromChannel.transferTo(position, count, toChannel);
+            printChannelData(toChannel);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
+    private void printChannelData(FileChannel toChannel) throws IOException {
+        ByteBuffer byteBuffer = ByteBuffer.allocate(66);
+        byteBuffer.clear();
+        toChannel.read(byteBuffer);
+//        byteBuffer.flip();
+        StringBuilder stringBuilder = new StringBuilder("");
+        while (byteBuffer.hasRemaining()) {
+            char ch = (char)byteBuffer.get();
+            stringBuilder.append(ch);
+        }
+        System.out.println(stringBuilder.toString());
     }
 
 }
