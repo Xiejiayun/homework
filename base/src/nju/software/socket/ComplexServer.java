@@ -15,22 +15,22 @@ public class ComplexServer {
     public static final int port = 6666;
 
     public static void main(String[] args) {
-        serverCommunicate();
+        ComplexServer complexServer = new ComplexServer();
+        complexServer.serverCommunicate();
     }
 
-    private static void serverCommunicate() {
+    private void serverCommunicate() {
         try {
-            ServerSocket serverSocket = new ServerSocket(port);
-            Socket clientSocket = serverSocket.accept();
+            ServerSocket server = new ServerSocket(port);
+            Socket client = server.accept();
             PrintWriter out =
-                    new PrintWriter(clientSocket.getOutputStream(), true);
+                    new PrintWriter(client.getOutputStream(), true);
             BufferedReader in = new BufferedReader(
-                    new InputStreamReader(clientSocket.getInputStream()));
-            BufferedReader stdIn =
-                    new BufferedReader(
-                            new InputStreamReader(System.in));
-            Thread sendThread = new Thread(new SendThread(stdIn, out));
-            Thread receiveThread = new Thread(new ReceiveThread(in));
+                    new InputStreamReader(client.getInputStream()));
+            BufferedReader stdIn = new BufferedReader(
+                    new InputStreamReader(System.in));
+            Thread sendThread = new Thread(new SendThread(getClass().toString(), stdIn, out));
+            Thread receiveThread = new Thread(new ReceiveThread(getClass().toString(), in));
             sendThread.start();
             receiveThread.start();
         } catch (IOException e) {

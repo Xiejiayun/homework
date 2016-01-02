@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.net.ConnectException;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
@@ -31,12 +32,15 @@ public class ComplexClient {
             BufferedReader stdIn =
                     new BufferedReader(
                             new InputStreamReader(System.in));
-            Thread sendThread = new Thread(new SendThread(stdIn, out));
-            Thread receiveThread = new Thread(new ReceiveThread(in));
+            Thread sendThread = new Thread(new SendThread(getClass().toString(), stdIn, out));
+            Thread receiveThread = new Thread(new ReceiveThread(getClass().toString(), in));
             sendThread.start();
             receiveThread.start();
         } catch (UnknownHostException e) {
+            System.out.println("Unable to connect to the specific host, application terminated!");
             e.printStackTrace();
+        } catch (ConnectException e) {
+            System.out.println("Unable to connect to the server, application terminated!");
         } catch (IOException e) {
             e.printStackTrace();
         }

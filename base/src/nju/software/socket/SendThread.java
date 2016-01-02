@@ -8,10 +8,12 @@ import java.io.PrintWriter;
  * Created by Xie on 2016/1/2.
  */
 public class SendThread implements Runnable{
+    String name;
     PrintWriter out;
     BufferedReader stdIn;
 
-    public SendThread(BufferedReader stdIn, PrintWriter out) {
+    public SendThread(String name, BufferedReader stdIn, PrintWriter out) {
+        this.name = name;
         this.stdIn = stdIn;
         this.out = out;
     }
@@ -23,8 +25,6 @@ public class SendThread implements Runnable{
             while ((output = stdIn.readLine()) != null) {
                 out.println(output);
                 if (output.equals("Bye")) {
-                    stdIn.close();
-                    out.close();
                     break;
                 }
             }
