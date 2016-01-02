@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 /**
+ * Send thread to send messages
  * Created by Xie on 2016/1/2.
  */
 public class SendThread implements Runnable{

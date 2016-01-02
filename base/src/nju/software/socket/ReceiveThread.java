@@ -3,6 +3,10 @@ package nju.software.socket;
 import java.io.BufferedReader;
 import java.io.IOException;
 
+/**
+ * Receive thread to receive messages
+ * Created by Xie on 2016/1/2.
+ */
 public class ReceiveThread implements Runnable {
 
     String name;

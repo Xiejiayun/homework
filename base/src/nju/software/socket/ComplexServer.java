@@ -8,6 +8,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 /**
+ * A complex server using two threads to send and receive messages
  * Created by Xie on 2016/1/2.
  */
 public class ComplexServer {

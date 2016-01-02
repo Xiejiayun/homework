@@ -9,6 +9,7 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 
 /**
+ * A complex client using two threads to send and receive messages
  * Created by Xie on 2016/1/2.
  */
 public class ComplexClient {
