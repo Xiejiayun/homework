@@ -1,4 +1,4 @@
-package nju.software.socket;
+package nju.software.nio;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
@@ -17,9 +17,9 @@ import java.util.Set;
  */
 public class NioSocketServer {
 
-    private static final String  DEFAULT_SERVER = "localhost";
+    private static final String DEFAULT_SERVER = "localhost";
     private static final int DEFAULT_PORT = 6666;
-    private byte[] data = new byte[95*2];
+    private byte[] data = new byte[95 * 2];
 
     public static void main(String[] args) {
         NioSocketServer nioSocketServer = new NioSocketServer();
@@ -28,7 +28,7 @@ public class NioSocketServer {
     }
 
     public void initData() {
-        for (byte i=' '; i<'~'; i++) {
+        for (byte i = ' '; i < '~'; i++) {
             data[i - ' '] = i;
             data[i + 95 - ' '] = i;
         }
@@ -78,8 +78,8 @@ public class NioSocketServer {
                         SelectionKey key2 = client.register(selector, SelectionKey.OP_WRITE);
                         ByteBuffer byteBuffer = ByteBuffer.allocate(74);
                         byteBuffer.put(data, 0, 72);
-                        byteBuffer.put((byte)'\r');
-                        byteBuffer.put((byte)'\n');
+                        byteBuffer.put((byte) '\r');
+                        byteBuffer.put((byte) '\n');
                         key2.attach(byteBuffer);
                     } else if (key.isWritable()) {
                         SocketChannel socketChannel = (SocketChannel) key.channel();
@@ -91,8 +91,8 @@ public class NioSocketServer {
                             int posistion = Math.abs(first - ' ' + 1);
                             System.out.println(first + " " + posistion);
                             byteBuffer.put(data, posistion, 72);
-                            byteBuffer.put((byte)'\r');
-                            byteBuffer.put((byte)'\n');
+                            byteBuffer.put((byte) '\r');
+                            byteBuffer.put((byte) '\n');
                             byteBuffer.flip();
                         }
                         socketChannel.write(byteBuffer);

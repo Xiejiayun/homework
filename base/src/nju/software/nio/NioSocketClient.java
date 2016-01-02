@@ -1,4 +1,4 @@
-package nju.software.socket;
+package nju.software.nio;
 
 import java.net.InetSocketAddress;
 import java.net.SocketAddress;
