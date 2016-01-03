@@ -1,4 +1,4 @@
-package nju.software.concurrent;
+package nju.software.concurrent.threadpool;
 
 /**
  * A simple example using Thread Pool to manager threads

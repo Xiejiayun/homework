@@ -1,4 +1,4 @@
-package nju.software.concurrent;
+package nju.software.concurrent.lock;
 
 /**
  * A simple example about Lock

@@ -1,4 +1,4 @@
-package nju.software.concurrent;
+package nju.software.concurrent.blockingqueue;
 
 import java.util.concurrent.LinkedBlockingQueue;
 

@@ -1,4 +1,4 @@
-package nju.software.concurrent;
+package nju.software.concurrent.blockingqueue;
 
 /**
  * A simple PriorityBlockingQueue example
