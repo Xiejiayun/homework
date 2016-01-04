@@ -123,8 +123,17 @@ public class BufferBase {
      * using FloatBuffer
      */
     public void floatBuffer() {
-        FloatBuffer floatBuffer = FloatBuffer.allocate(10);
-        System.out.println("floatBuffer " + floatBuffer);
+        FloatBuffer buffer = FloatBuffer.allocate(10);
+        for (int i = 0; i < buffer.capacity(); ++i) {
+            float f = (float) (i);
+            buffer.put(f);
+        }
+        System.out.println(buffer.toString());
+        buffer.flip();
+        while (buffer.hasRemaining()) {
+            float f = buffer.get();
+            System.out.println(f);
+        }
     }
 
     /**
