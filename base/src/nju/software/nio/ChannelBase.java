@@ -1,10 +1,12 @@
 package nju.software.nio;
 
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.RandomAccessFile;
+import java.net.InetSocketAddress;
 import java.nio.ByteBuffer;
-import java.nio.channels.FileChannel;
+import java.nio.channels.*;
 
 /**
  * Using the channels in nio package
@@ -15,8 +17,59 @@ public class ChannelBase {
     public static void main(String[] args) {
         ChannelBase channelBase = new ChannelBase();
         channelBase.writeFileChannel();
+        channelBase.writeFileChannelFromStream();
 //        channelBase.readFileChannel();
-        channelBase.transferBetweenChannels();
+//        channelBase.transferBetweenChannels();
+
+    }
+
+
+    public void gather(FileChannel channel, ByteBuffer[] byteBuffers) {
+        try {
+            channel.write(byteBuffers);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void scatter (FileChannel channel, ByteBuffer[] byteBuffers) {
+        try {
+            channel.read(byteBuffers);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void readSocketChannel() {
+        try {
+            SocketChannel socketChannel = SocketChannel.open();
+            socketChannel.connect(new InetSocketAddress("127.0.0.1", 6666));
+            ServerSocketChannel serverSocketChannel = ServerSocketChannel.open();
+            serverSocketChannel.socket().bind(new InetSocketAddress(6666));
+            DatagramChannel datagramChannel = DatagramChannel.open();
+            datagramChannel.connect(new InetSocketAddress("127.0.0.1", 6666)).socket().bind(new InetSocketAddress(6666));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void writeFileChannelFromStream() {
+        try {
+            FileInputStream fileInputStream = new FileInputStream("from.txt");
+            FileChannel fileChannel = fileInputStream.getChannel();
+            String str = "hello xjy!";
+            ByteBuffer byteBuffer = ByteBuffer.allocate(66);
+            byteBuffer.clear();
+            byteBuffer.put(str.getBytes());
+            byteBuffer.flip();
+            while (byteBuffer.hasRemaining()) {
+                fileChannel.write(byteBuffer);
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void readFileChannel() {
@@ -79,5 +132,4 @@ public class ChannelBase {
         }
         System.out.println(stringBuilder.toString());
     }
-
 }

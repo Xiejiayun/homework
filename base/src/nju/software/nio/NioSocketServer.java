@@ -70,6 +70,15 @@ public class NioSocketServer {
                 SelectionKey key = keyIterator.next();
                 keyIterator.remove();
                 try {
+//                    if (key.isReadable()) {
+//
+//                    } else if (key.isWritable()) {
+//
+//                    } else if (key.isConnectable()) {
+//
+//                    } else if(key.isAcceptable()) {
+//
+//                    }
                     if (key.isAcceptable()) {
                         ServerSocketChannel serverChannel = (ServerSocketChannel) key.channel();
                         SocketChannel client = serverChannel.accept();
