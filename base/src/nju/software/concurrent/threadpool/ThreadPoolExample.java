@@ -1,9 +1,7 @@
 package nju.software.concurrent.threadpool;
 
-import java.util.concurrent.ArrayBlockingQueue;
-import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.ThreadPoolExecutor;
-import java.util.concurrent.TimeUnit;
+import java.util.concurrent.*;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * A simple example using Thread Pool to manager threads
@@ -11,32 +9,82 @@ import java.util.concurrent.TimeUnit;
  */
 public class ThreadPoolExample {
 
+    static long begintime;
+    final BlockingQueue<Runnable> queue = new ArrayBlockingQueue<Runnable>(10);
+    final ThreadPoolExecutor executor = new ThreadPoolExecutor(10, 600, 30,
+            TimeUnit.SECONDS, queue, Executors.defaultThreadFactory(),
+            new ThreadPoolExecutor.AbortPolicy());
+    final AtomicInteger completedTask = new AtomicInteger(0);
+    final AtomicInteger rejectedTask = new AtomicInteger(0);
+    int count = 10;
+
     public static void main(String[] args) {
-        BlockingQueue blockingQueue = new ArrayBlockingQueue<Runnable>(10);
-        ThreadPoolExecutor executor = new ThreadPoolExecutor(3, 6, 1, TimeUnit.SECONDS, blockingQueue);
-        executor.execute(new Counter(1));
-        executor.execute(new Counter(1));
-        executor.execute(new Counter(1));
-        executor.execute(new Counter(1));
-        executor.execute(new Counter(1));
-        executor.execute(new Counter(1));
-        executor.execute(new Counter(1));
+        begintime = System.currentTimeMillis();
+        ThreadPoolExample demo = new ThreadPoolExample();
+        demo.start();
+        System.out.println(demo.completedTask.get() + " " + demo.rejectedTask.get());
     }
 
-
-
-}
-class Counter implements Runnable {
-
-    int counter;
-
-    public Counter(int c) {
-        this.counter = c;
+    public void start() {
+        CountDownLatch latch = new CountDownLatch(count);
+        CyclicBarrier barrier = new CyclicBarrier(count);
+        for (int i = 0; i < count; i++) {
+            new Thread(new TestThread(latch, barrier)).start();
+        }
+        try {
+            latch.await();
+            executor.shutdown();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
-    @Override
-    public void run() {
-        for (int i=0; i<10000; i++)
-        System.out.println(Thread.currentThread().getName() +  counter++);
+    class TestThread implements Runnable {
+        private CountDownLatch latch;
+        private CyclicBarrier barrier;
+
+        public TestThread(CountDownLatch latch, CyclicBarrier barrier) {
+            super();
+            this.latch = latch;
+            this.barrier = barrier;
+        }
+
+        @Override
+        public void run() {
+            try {
+                System.out.println(this.toString() + "barrier waiting");
+                barrier.await();
+                System.out.println(this.toString() + "barrier starting");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            try {
+                executor.execute(new Task(latch));
+            } catch (RejectedExecutionException e) {
+                latch.countDown();
+                System.out.println("Rejected task count " + rejectedTask.incrementAndGet());
+            }
+        }
+
+    }
+
+    class Task implements Runnable {
+        CountDownLatch latch;
+
+        public Task(CountDownLatch latch) {
+            super();
+            this.latch = latch;
+        }
+
+        @Override
+        public void run() {
+            try {
+                Thread.sleep(3000);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            System.out.println("Completed task count " + completedTask.incrementAndGet());
+            latch.countDown();
+        }
     }
 }

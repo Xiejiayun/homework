@@ -10,6 +10,11 @@ public class DeadLockExample {
     private static DeadLockExample two = new DeadLockExample();
 
     public static void main(String[] args) {
+        deadlock();
+
+    }
+
+    private static void deadlock() {
         Thread first = new Thread(new Runnable() {
             @Override
             public void run() {
@@ -40,7 +45,6 @@ public class DeadLockExample {
 
         first.start();
         second.start();
-
     }
 
 }
