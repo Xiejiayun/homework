@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>software.edu.nju</groupId>
-    <artifactId>libdemo</artifactId>
+    <artifactId>commonlang</artifactId>
     <version>1.0-SNAPSHOT</version>
     <dependencies>
         <dependency>
