@@ -23,10 +23,12 @@
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
         <module name="commonlang" />
+        <module name="libdemo" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="commonlang" target="1.5" />
+      <module name="libdemo" target="1.5" />
       <module name="module" target="1.5" />
     </bytecodeTargetLevel>
   </component>

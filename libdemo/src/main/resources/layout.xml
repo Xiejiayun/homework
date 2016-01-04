@@ -1,0 +1,8 @@
+<Appenders>
+    <Socket name="Graylog" protocol="udp" host="graylog.domain.com" port="12201">
+        <GelfLayout host="someserver" compressionType="GZIP" compressionThreshold="1024">
+            <KeyValuePair key="additionalField1" value="additional value 1"/>
+            <KeyValuePair key="additionalField2" value="additional value 2"/>
+        </GelfLayout>
+    </Socket>
+</Appenders>

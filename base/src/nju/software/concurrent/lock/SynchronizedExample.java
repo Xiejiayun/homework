@@ -5,13 +5,17 @@ package nju.software.concurrent.lock;
  */
 public class SynchronizedExample {
 
-    public synchronized  static void count() {
+    public synchronized  void count() {
 
+    }
+
+    public static void main(String[] args) {
+        synchronized (new Object()) {
+        }
     }
 
 //    public static void count() {
 //        synchronized (SynchronizedExample.class) {
-//
 //        }
 //    }
 }

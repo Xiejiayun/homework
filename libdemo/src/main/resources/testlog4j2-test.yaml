@@ -1,0 +1,33 @@
+Configuration:
+status: debug
+Appenders:
+Console:
+RandomAccessFile:
+- name: SQL_APPENDER
+fileName: logs/sql.log
+PatternLayout:
+Pattern: "%d{ISO8601_BASIC} %-5level %logger{1} %X %msg%n"
+- name: PAYLOAD_APPENDER
+fileName: logs/payload.log
+PatternLayout:
+Pattern: "%d{ISO8601_BASIC} %-5level %logger{1} %X %msg%n"
+- name: PERFORMANCE_APPENDER
+fileName: logs/performance.log
+PatternLayout:
+Pattern: "%d{ISO8601_BASIC} %-5level %logger{1} %X %msg%n"
+Routing:
+name: ROUTING_APPENDER
+Routes:
+pattern: "$${marker:}"
+Route:
+- key: PERFORMANCE
+ref: PERFORMANCE_APPENDER
+- key: PAYLOAD
+ref: PAYLOAD_APPENDER
+- key: SQL
+ref: SQL_APPENDER
+Loggers:
+Root:
+level: trace
+AppenderRef:
+- ref: ROUTING_APPENDER
