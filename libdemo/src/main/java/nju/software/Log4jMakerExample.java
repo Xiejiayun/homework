@@ -11,16 +11,16 @@ import java.util.Map;
  * Created by Xie on 2016/1/1.
  */
 public class Log4jMakerExample {
-    private Logger logger = LogManager.getLogger(Log4jMakerExample.class.getName());
     private static final Marker SQL_MARKER = MarkerManager.getMarker("SQL");
     private static final Marker UPDATE_MARKER = MarkerManager.getMarker("SQL_UPDATE");
     private static final Marker QUERY_MARKER = MarkerManager.getMarker("SQL_QUERY");
+    private Logger logger = LogManager.getLogger(Log4jMakerExample.class.getName());
 
     public static void main(String[] args) {
         new Log4jMakerExample().doQuery("hello");
     }
 
-    public void  doQuery(String table) {
+    public void doQuery(String table) {
         logger.entry("hello");
 
         logger.debug(QUERY_MARKER, "SELECT * FROM {}", table);

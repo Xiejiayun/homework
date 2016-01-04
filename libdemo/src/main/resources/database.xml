@@ -2,12 +2,12 @@
 <Configuration status="error">
     <Appenders>
         <JDBC name="databaseAppender" tableName="dbo.application_log">
-            <DataSource jndiName="java:/comp/env/jdbc/LoggingDataSource" />
-            <Column name="eventDate" isEventTimestamp="true" />
-            <Column name="level" pattern="%level" />
-            <Column name="logger" pattern="%logger" />
-            <Column name="message" pattern="%message" />
-            <Column name="exception" pattern="%ex{full}" />
+            <DataSource jndiName="java:/comp/env/jdbc/LoggingDataSource"/>
+            <Column name="eventDate" isEventTimestamp="true"/>
+            <Column name="level" pattern="%level"/>
+            <Column name="logger" pattern="%logger"/>
+            <Column name="message" pattern="%message"/>
+            <Column name="exception" pattern="%ex{full}"/>
         </JDBC>
     </Appenders>
     <Loggers>

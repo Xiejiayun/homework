@@ -11,9 +11,10 @@ import org.apache.logging.log4j.core.Logger;
  */
 public class Log4jBase {
 
-    private static int count = 0;
-//    private static Logger logger = LogManager.getLogger(Log4jBase.class);
+    //    private static Logger logger = LogManager.getLogger(Log4jBase.class);
     final static Logger logger = (Logger) LogManager.getLogger(Logger.ENTRY_MARKER);
+    private static int count = 0;
+
     public static void main(String[] args) {
 
         System.out.println("start");
