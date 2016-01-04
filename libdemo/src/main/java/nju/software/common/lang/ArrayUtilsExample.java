@@ -1,4 +1,4 @@
-package nju.software.base;
+package nju.software.common.lang;
 
 import org.apache.commons.lang3.ArrayUtils;
 

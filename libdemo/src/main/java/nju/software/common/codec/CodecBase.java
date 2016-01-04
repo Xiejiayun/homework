@@ -1,17 +1,22 @@
-package nju.software.base;
+package nju.software.common.codec;
 
-import org.apache.commons.lang3.SerializationUtils;
+import org.apache.commons.codec.binary.Base32;
 
 import java.io.Serializable;
 
 /**
  * Created by Xie on 2016/1/2.
  */
-public class SerializationUtilsExample {
+public class CodecBase {
+
     public static void main(String[] args) {
-        byte[] from = SerializationUtils.serialize(new Student("Jack", 22));
-        Student jack = SerializationUtils.deserialize(from);
-        System.out.println(jack);
+        Base32 base32 = new Base32();
+        byte[] base = new byte[]{'B', 'A', 'C'};
+        System.out.println(base[0] + "" + base[1] + "" + base[2]);
+        byte[] from = base32.encode(base);
+        System.out.println(from[0] + "" + from[1] + "" + from[2]);
+        byte[] to = base32.decode(from);
+        System.out.println(to[0] + "" + to[1] + "" + to[2]);
     }
 }
 

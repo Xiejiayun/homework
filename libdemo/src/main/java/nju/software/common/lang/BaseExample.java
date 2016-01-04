@@ -1,4 +1,4 @@
-package nju.software.base;
+package nju.software.common.lang;
 
 /**
  * Provide some common functions like print
